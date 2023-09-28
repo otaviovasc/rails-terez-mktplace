@@ -1,14 +1,13 @@
 <p style="color: green"><%= notice %></p>
 
 <div class="container">
-  <h1>Product Details</h1>
   <div class="row">
     <div class="col-md-6">
       <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" class="img-fluid" alt="<%= @product.name %>">
     </div>
     <div class="col-md-6">
       <h2><%= @product.name %></h2>
-      <p>Price: $<%= @product.price %></p>
+      <p>Preço: R$<%= @product.price %></p>
       <!-- Add other product details here if needed -->
 
       <!-- Add to Cart button -->
@@ -22,7 +21,7 @@
 </div>
 
 <div>
-  <%= link_to "Edit this product", edit_product_path(@product) %> |
-  <%= link_to "Back to products", products_path %>
-  <%= button_to "Destroy this product", @product, method: :delete %>
+  <%= link_to "Editar produto", edit_product_path(@product) %> |
+  <%= link_to "Ver produtos", products_path %>
+  <%= button_to "Excluir esse produto", @product, method: :delete %>
 </div>

@@ -18,8 +18,8 @@
         </div>
       </div>
     <% end %>
-    <%= link_to "Limpar carrinho", cart_clear_path, class: "btn btn-gradient float-end" %>
+    <%= link_to "Limpar carrinho", cart_clear_path, class: "btn btn-primary float-end" %>
   </div>
 <p>Total: R$<%= @cart.total %></p>
-<%= link_to "Finalizar Compra", "checkout", class: "btn btn-gradient", target: "_blank" %>
+<%= link_to "Finalizar Compra", "checkout", class: "btn btn-primary", target: "_blank" %>
 <% end %>
