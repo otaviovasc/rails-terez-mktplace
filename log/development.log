@@ -14672,3 +14672,42 @@ Redirected to https://api.whatsapp.com/send?phone=5518996469432&text=*Pedido%20n
 Completed 302 Found in 7ms (ActiveRecord: 0.5ms | Allocations: 3083)
 
 
+  [1m[35m (156.2ms)[0m  [1m[35mCREATE DATABASE "my_database_development" ENCODING = 'utf8'[0m
+  [1m[35m (72.1ms)[0m  [1m[35mCREATE DATABASE "my_database_test" ENCODING = 'utf8'[0m
+  [1m[35m (23.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "my_database_development"[0m
+  [1m[35m (23.5ms)[0m  [1m[35mDROP DATABASE IF EXISTS "my_database_test"[0m
+  [1m[35m (73.1ms)[0m  [1m[35mCREATE DATABASE "my_database_development" ENCODING = 'utf8'[0m
+  [1m[35m (67.2ms)[0m  [1m[35mCREATE DATABASE "my_database_test" ENCODING = 'utf8'[0m
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5168794849566389475)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateProducts (20220704061354)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE TABLE "products" ("id" bigserial primary key, "name" character varying, "description" text, "price" decimal(5,2), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220704061354"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateCarts (20220704061405)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "carts" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220704061405"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateOrderables (20220704061453)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE TABLE "orderables" ("id" bigserial primary key, "product_id" bigint NOT NULL, "cart_id" bigint NOT NULL, "quantity" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_1ccd522baf"
+FOREIGN KEY ("product_id")
+  REFERENCES "products" ("id")
+, CONSTRAINT "fk_rails_d9421de196"
+FOREIGN KEY ("cart_id")
+  REFERENCES "carts" ("id")
+)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE INDEX "index_orderables_on_product_id" ON "orderables" ("product_id")[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE INDEX "index_orderables_on_cart_id" ON "orderables" ("cart_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220704061453"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2023-09-28 16:23:10.906188"], ["updated_at", "2023-09-28 16:23:10.906188"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(5168794849566389475)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
