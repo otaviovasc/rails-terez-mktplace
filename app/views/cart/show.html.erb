@@ -1,0 +1,25 @@
+<h1>Carrinho</h1>
+<% if @cart.orderables.empty? %>
+  <h2>Seu carrinho esta vazio.</h2>
+  <%= link_to "Ver produtos", root_path, class: "btn btn-gradient"%>
+<% else %>
+  <div class="order">
+    <% @cart.orderables.each do |orderable| %>
+      <% product = orderable.product %>
+      <div id="<%= "cart-#{product.id}" %>">
+        <div class="card-product my-3">
+          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+          <div class="card-product-infos">
+            <h2><%= product.name %> - x<%= orderable.quantity %></h2>
+            <p><%= product.description %></p>
+            <p>Unidade: R$<%= product.price %></p>
+            <p>Total: R$<%= orderable.total %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= link_to "Limpar carrinho", cart_clear_path, class: "btn btn-gradient float-end" %>
+  </div>
+<p>Total: R$<%= @cart.total %></p>
+<%= link_to "Finalizar Compra", "checkout", class: "btn btn-gradient", target: "_blank" %>
+<% end %>

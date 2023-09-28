@@ -1,0 +1,23 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="container">
+
+  <h1>Produtos</h1>
+  <div class="row">
+    <% @products.each do |product| %>
+      <div class="col-md-3">
+        <a href="<%= product_path(product) %>">
+          <div class="card mb-4 shadow-sm">
+            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" class="card-img-top" alt="<%= product.name %>">
+            <div class="card-body">
+              <h5 class="card-title"><%= product.name %></h5>
+              <p class="card-text">R$ <%= product.price %></p>
+            </div>
+          </div>
+        </a>
+      </div>
+    <% end %>
+  </div>
+
+  <%= link_to "New product", new_product_path, class: "btn btn-primary mb-3" %>
+</div>
